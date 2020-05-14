@@ -4,6 +4,8 @@ const PORT = require('./config').port
 
 const app = express()
 
+app.use(express.json())
+
 moviesApi(app)
 
 app.listen(PORT, () => {
