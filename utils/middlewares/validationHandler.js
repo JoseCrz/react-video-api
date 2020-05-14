@@ -1,3 +1,5 @@
+const boom = require('@hapi/boom')
+
 const validate = () => {
   return false
 }
@@ -7,9 +9,11 @@ const validationHandler = (schema, check = 'body') => {
     const error = validate(req[check], schema)
 
     if (error) {
-      return next(new Error(error))
+      return next(boom.badRequest(error))
     }
 
     return next()
   }
 }
+
+module.exports = validationHandler
