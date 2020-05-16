@@ -1,4 +1,5 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const moviesApi = require('./routes/movies')
 const PORT = require('./config').port
 
@@ -7,7 +8,8 @@ const notFoundHandler = require('./utils/middlewares/notFoundHandler')
 
 const app = express()
 
-app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: false}))
+app.use(bodyParser.json())
 
 // ? Set movies routes
 moviesApi(app)
