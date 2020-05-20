@@ -1,0 +1,28 @@
+{
+  "name": "react-video",
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@now/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.js",
+      "methods": ["POST", "GET", "PUT", "DELETE"],
+      "headers": {
+        "Access-Control-Allow-Origin": "_",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+        "Access-Control-Allow-Credentials": "true"
+      }
+    }
+  ],
+  "env": {
+    "DB_USER": "@db-user",
+    "DB_NAME": "@db-name",
+    "DB_PASSWORD": "@db-password",
+    "DB_HOST": "@db-host"
+  }
+}
