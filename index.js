@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const moviesApi = require('./routes/movies')
+const userMoviesApi = require('./routes/userMovies')
 const PORT = require('./config').port
 
 const { errorHandler, errorWrapper, errorLogger } = require('./utils/middlewares/errors')
@@ -13,6 +14,9 @@ app.use(bodyParser.json())
 
 // ? Set movies routes
 moviesApi(app)
+
+// ? Set user movies routes
+userMoviesApi(app)
 
 // ? Handle 404 Not Found
 app.use(notFoundHandler)
