@@ -4,7 +4,7 @@ const validationHandler = require('../utils/middlewares/validationHandler')
 
 const UserMoviesService = require('../services/userMovies')
 const { userIdSchema } = require('../utils/schemas/users')
-const { userIdSchema } = require('../utils/schemas/movies')
+const { movieIdSchema } = require('../utils/schemas/movies')
 const { createUserMovieSchema, userMovieIdSchema } = require('../utils/schemas/userMovies')
 
 const userMoviesApi = app => {

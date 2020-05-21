@@ -8,8 +8,13 @@ class UsersService {
   }
 
   async getUser({ email }) {
-    const [ user ] = await this.mongoDB(this.collection, { email })
-    return user
+    try {
+      const [ user ] = await this.mongoDB.getAll(this.collection, { email })
+      return user
+      
+    } catch (error) {
+      console.log('[USERS SERVICE ERROR]:', error)
+    }
   }
 
   async createUser({ user }) {

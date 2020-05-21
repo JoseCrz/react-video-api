@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const moviesApi = require('./routes/movies')
 const userMoviesApi = require('./routes/userMovies')
+const authApi = require('./routes/auth')
 const PORT = require('./config').port
 
 const { errorHandler, errorWrapper, errorLogger } = require('./utils/middlewares/errors')
@@ -11,6 +12,9 @@ const app = express()
 
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
+
+// ? Set auth routes
+authApi(app)
 
 // ? Set movies routes
 moviesApi(app)
