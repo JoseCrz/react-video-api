@@ -7,7 +7,7 @@ const ApiKeysService = require('../services/apiKeys')
 const { authJwtSecret } = require('../config')
 const validationHandler = require('../utils/middlewares/validationHandler')
 const UsersService = require('../services/users')
-const { createUserSchema } = require('../utils/schemas/users')
+const { createUserSchema, createProviderUserSchema } = require('../utils/schemas/users')
 
 // ? Basic Strategy
 require('../utils/auth/strategies/basic')
@@ -83,6 +83,41 @@ const authApi = app => {
     } catch (error) {
       next(error)
     }
+  })
+
+  router.post('/sign-provider', validationHandler(createProviderUserSchema), async (req, res, next) => {
+    const { body } = req
+
+    const { apiKeyToken, ...user } = body
+
+    if (!apiKeyToken) {
+      next(boom.unauthorized('API Key Token Required'))
+    }
+
+    try {
+      const queriedUser = await usersService.getOrCreateUser({ user })
+      const apiKey = await apiKeysService.getApiKey({ token: apiKeyToken })
+
+      if (!apiKey) {
+        next(boom.unauthorized())
+      }
+
+      const { _id: id, name, email } = queriedUser
+
+      const payload = {
+        sub: id,
+        name,
+        email,
+        scopes: apiKey.scopes
+      }
+
+      const token = jwt.sign(payload, authJwtSecret, { expiresIn: '15m' })
+
+      res.status(200).json({ token, user: { id, name, email } })
+    } catch (error) {
+      next(error)
+    }
+
   })
 }
 
