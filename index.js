@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const helmet = require('helmet')
 const moviesApi = require('./routes/movies')
 const userMoviesApi = require('./routes/userMovies')
 const authApi = require('./routes/auth')
@@ -12,6 +13,7 @@ const app = express()
 
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
+app.use(helmet())
 
 // ? Set auth routes
 authApi(app)
