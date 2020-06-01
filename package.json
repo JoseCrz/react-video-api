@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "React Video API",
   "main": "index.js",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "dev": "DEBUG=app nodemon index",
     "start": "NODE_ENV=production node index",
