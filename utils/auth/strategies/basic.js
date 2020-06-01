@@ -2,7 +2,7 @@ const passport = require('passport')
 const { BasicStrategy } = require('passport-http')
 const boom = require('@hapi/boom')
 const bcrypt = require('bcrypt')
-const chalk = require('chalk')
+
 
 const UsersService = require('../../../services/users')
 
