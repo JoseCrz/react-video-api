@@ -12,7 +12,7 @@
     "test": "mocha --exit",
     "cover": "nyc npm run test",
     "report": "nyc report --reporter=html && open coverage/index.html",
-    "build": "movies-api build --output public"
+    "build": "build --output public"
   },
   "keywords": [
     "Node",
