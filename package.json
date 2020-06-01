@@ -11,8 +11,7 @@
     "start": "NODE_ENV=production node index",
     "test": "mocha --exit",
     "cover": "nyc npm run test",
-    "report": "nyc report --reporter=html && open coverage/index.html",
-    "build": "build --output public"
+    "report": "nyc report --reporter=html && open coverage/index.html"
   },
   "keywords": [
     "Node",
